@@ -4,35 +4,32 @@ class SpellcheckerApp:
     def __init__(self):
         self.spell = SpellChecker()
 
-
-    def correct_text(self,text):
+    def correct_text(self, text):
         words = text.split()
         corrected_words = []
 
         for word in words:
             corrected_word = self.spell.correction(word)
-            if corrected_words != word.lower():
+            if corrected_word != word.lower():
                 print(f'Correcting "{word}" to "{corrected_word}"')
-            corrected_words.append(corrected_word)
-        # Return the coreect text
+            corrected_words.append(corrected_word)  # Fixing the append method
+        # Return the corrected text
         return ' '.join(corrected_words)
 
-# step-5 running the app
-
+    # Define the run method inside the class
     def run(self):
-        print("\n--- Spell checker ----")
+        print("\n--- Spell Checker ---")
 
+        while True:
+            text = input('Enter text to check (or type "exit" to quit): ')
 
-        while  True:
-          text = input('Enter text to check (or type "exit" to quit): ')
+            if text.lower() == 'exit':
+                print('Closing the program...')
+                break
 
-          if text.lower() == 'exit':
-             print('closing the program....')
-             break
+            corrected_text = self.correct_text(text)
+            print(f'Corrected Text: {corrected_text}')
 
-          Corrected_text = self.correct_text(text)
-          print(f'Corrected Text : {Corrected_text}')
-
-
+# Running the app
 if __name__ == "__main__":
     SpellcheckerApp().run()
